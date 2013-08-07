@@ -313,13 +313,13 @@ validation.attachParam = {
         event : null
     }]
 };
-//MS object param ob_
+ 
 validation.attach = function(e, ob_) {
     var t = this.extend(this.attachParam, e);
      
     return this.dispatcher(t, ob_)
 };
-//MS object param ob_
+ 
 validation.dispatcher = function(e, ob_) {
     if (e.template && e.name && e.nodeClass && e.event) {
          
@@ -331,7 +331,7 @@ validation.dispatcher = function(e, ob_) {
          
     }
 };
-//MS object param ob_
+ 
 validation.exc = function(e, t, ob_) {
     var n = [];
     var ob__ = this.isUndefined(ob_)?false:ob_
@@ -350,7 +350,7 @@ validation.exc = function(e, t, ob_) {
             r = e.template;
             i = e.name.split(" ");
             s = e.event.split(" ") || [];
-            //MS object param ob_
+             
             template.include([r], i, s, n[f].element, ob__);
             i = [];
             r = "";
