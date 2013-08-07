@@ -1,3 +1,9 @@
+/**
+ * @author Salvatore Mariniello
+ *
+ */
+
+
 template.base = {
 
     ischar : function(event) {
