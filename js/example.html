@@ -1,4 +1,4 @@
-<!DOCTYPE>
+<!DOCTYPE >
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -666,10 +666,17 @@
 							<br>
 							&lt;script&gt;
 							<br />
-							validation.form('validateForm7',{callBack:function(a){alert(a[0].message)}});
-							<br />
+							 validation.form('validateForm7', {<br>
+									label : 'left',<br>
+									showMessage : 'false',<br>
+									callBack : function(a) {<br>
+										alert(a[0].message)<br>
+									}<br>
+								});<br>
+
+							<br /><br>
 							validation.captured({nodeClass:"myEvent",attach:[{fn:template.base.evidenzia,event:"focus blur"}]});
-							<br/>
+							<br/><br>
 							&lt;/script&gt;
 							<br>
 							<br>
