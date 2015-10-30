@@ -1,0 +1,840 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+		<script type='text/javascript' src='js/validationCom.js'></script>
+		<script type='text/javascript' src='js/validate-form.js'></script>
+		<script type='text/javascript' src='js/validation-base.js'></script>
+		<script type="text/javascript">
+            window.onload = function() {
+
+                validation.form('validateForm1');
+				
+                validation.form('validateForm2', {
+                    label : 'top'
+                });
+                validation.form('validateForm3', {
+                    label : 'bottom',
+                    showMessage : false
+                });
+                validation.form('validateForm4', {
+                    label : 'right',
+                    fontColor : 'red',
+                    background : 'false',
+                    backgroundDef : '#FFFFFF'
+                });
+                validation.form('validateForm5', {
+                    label : 'left',
+                    showMessage : false,
+                    fontSize : '10px',
+                    fontColor : 'red',
+                    background : '#FF6666',
+                    backgroundDef : '#FFFFFF',
+                    useLabOnCallBack : 'true',
+                    callBack : function(a) {
+                        alert(a[0].message)
+                    }
+                });
+                validation.form('validateForm6', {
+                    showMessage : 'false',
+                    background : 'false',
+                    callBack : function(a) {
+                        alert(a[0].message)
+                    }
+                });
+
+                validation.form('validateForm7', {
+                    label : 'left',
+                    showMessage : 'false',
+                    callBack : function(a) {
+                        alert(a[0].message)
+                    }
+                });
+
+                validation.captured('event');
+
+                validation.captured({
+                    nodeClass : "event2",
+                    attach : [{
+                        fn : template.base.evidenzia,
+                        event : "focus blur"
+                    }]
+                });
+                validation.captured({
+                    nodeClass : "myEvent",
+                    attach : [{
+                        fn : template.base.evidenzia,
+                        event : "focus blur"
+                    }]
+                });
+
+                validation.form('btnValida', {
+                    event : 'click',
+                    label : 'top',
+                    callBack : function(a, f) {
+                        if (a.length < 1)
+                            f.submit()
+                    }
+                });
+
+                 
+
+            }
+
+		</script>
+		<style type="text/css">
+			body {
+				font-family: "Arial Narrow";
+			}
+			label {
+				margin-right: 10px;
+				width: 210px;
+				float: left;
+			}
+			form {
+				margin-left: 10px;
+			}
+			#title {
+				padding-top: 10px;
+				padding-bottom: 10px;
+				height: 90px;
+			}
+			div {
+				vertical-align: bottom;
+				height: 450px;
+			}
+			.clear {
+				clear: both;
+				height: 20px;
+				background: blue;
+				font-size: 12pt;
+				font: bold;
+				color: #fff;
+			}
+			.form {
+				padding: 30px;
+			}
+			#title div {
+				height: 88px;
+			}
+			.code {
+				width: 100%;
+				padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div id="page" style="width: 100%;float:inherit;background:navy">
+			<div id="title" style="width: 100%;float:inherit;background:navy">
+				<div style="width: 50%;float: left">
+					<span style="font-size: 18pt;color:#fff;margin-left: 10px;float: left"> IE6 Validation Form integration event on page</span>
+					<span style="font-size: 16pt;color:yellow;margin-left: 10px;width: 100%;float: left"> ValidationProo.js</span>
+				</div>
+				<div style="width: 45%;float: right">
+					<a href="#"><span style="font-size: 14pt;color: yellow">__</span></a>
+				</div>
+			</div>
+			<div class="clear">
+				Esempio: validation form default
+			</div>
+			<!-- -->
+			<div id="pro01" style="width: 100%;float: left;background:#999;height:500px">
+
+				<div id="pro02" style="width: 50%;float:left">
+
+					<div id="pro03" class="form">
+						<form id="myForm" action="./index2.html" class="validateForm1">
+							<label>Campo Numerico:</label>
+							<input type="text" value="numerico" valid="{type:'number',message:'campo numerico'} "/>
+							<br />
+							<br />
+							<label>Campo email:</label>
+							<input type="text" value="2" valid="{type:'email',message:'email errata'} " />
+							<br />
+							<br />
+							<label>Campo nome:</label>
+							<input type="text" value="email" valid="{type:'alfa',message:'email nome'} "/>
+							<br />
+							<br />
+							<label>Campo descrizione:</label>
+							<input type="text" value="alfa" valid="{type:'alfa-num',message:'campo descrizione'} "/>
+							<br />
+							<br />
+							<label>Campo data:</label>
+							<input type="text" value="5" valid="{type:'data',message:'campo data'}" />
+							<br />
+							<br />
+							<label>Campo cap:</label>
+							<input type="text" value="2 bis" valid="{type:'cap',message:'campo cap'}" />
+							<br />
+							<br />
+							<label>Campo password:</label>
+							<input type="password" value="3 bis" valid="{type:'password',message:'campo password'} "/>
+							<br />
+							<br />
+							<br>
+							<input type="submit" value="send" />
+						</form>
+					</div>
+				</div>
+				<div id="pro04" style="width: 48%;float: right;background:#ddd;height:500px">
+					<div class="code">
+						<span style="width: 350px;height: 200px;padding: 10px;"> &lt;script&gt;
+							<br>
+							validation.form('validateForm1');
+							<br />
+							&lt;/script&gt;</span>
+
+					</div>
+				</div>
+
+			</div>
+			<div class="clear">
+				Esempio: Label: top
+			</div>
+			<!-- -->
+			<div id="pro05" style="width: 100%;float: left;background:#999">
+				<div id="pro06" style="width: 50%;float: left">
+					<div class="form">
+						<form action="./index2.html" class="validateForm2">
+							<label>Campo Numerico:</label>
+							<input type="text" value="numerico" valid="{type:'number',message:'campo numerico'}"/>
+							<br />
+							<br />
+							<label>Campo email:</label>
+							<input type="text" value="2" valid="{type:'email',message:'email errata'}" />
+							<br />
+							<br />
+							<label>Campo nome:</label>
+							<input type="text" value="email" valid="{type:'alfa',message:'email nome'}"/>
+							<br />
+							<br />
+							<label>Campo descrizione:</label>
+							<input type="text" value="alfa" valid="{type:'alfa-num',message:'campo descrizione'}"/>
+							<br />
+							<br />
+							<label>Campo data:</label>
+							<input type="text" value="5" valid="{type:'data',message:'campo data'}"/>
+							<br />
+							<br />
+							<label>Campo cap:</label>
+							<input type="text" value="2 bis" valid="{type:'cap',message:'campo cap'}"/>
+							<br />
+							<br />
+							<label>Campo password:</label>
+							<input type="password" value="3 bis" valid="{type:'password',message:'campo password'}"/>
+							<br />
+							<br />
+							<br>
+							<input type="submit" value="send" />
+						</form>
+					</div>
+				</div>
+				<div id="pro07" style="width: 48%;float: right;background:#ddd">
+					<div class="code">
+						<span style="width: 350px;height: 200px;padding: 10px;">
+							<br>
+							&lt;script&gt;
+							<br />
+							validation.form('validateForm2',{label:'top'} });
+							<br />
+							&lt;/script&gt;
+							<br>
+							<br>
+							&lt; form action="./index2.html" class="validateForm2">
+							<br>
+							&lt;input type="text" value="numerico" valid="{type:'number',message:'campo errato numerico'}"/&gt;
+							<br />
+							&lt;input type="text" value="numerico" valid="{type:'email',message:'campo errato ecc.ecc'}"/&gt;
+							<br />
+							&lt;input type="text" value="numerico" valid="{type:'alfa',message:'campo errato ecc.ecc'}"/&gt;
+							<br />
+							&lt;input type="text" value="numerico" valid="{type:'password',message:'campo errato password'}"/&gt;
+							<br />
+							&lt;input type="submit" value="send" />
+							<br />
+							&lt; /form> </span>
+
+					</div>
+				</div>
+
+			</div>
+			<div class="clear">
+				Esempio: Label: bottom
+			</div>
+			<!-- -->
+			<!-- -->
+			<div id="pro08" style="width: 100%;float: left;background:#999">
+				<div style="width: 50%;float: left">
+					<div class="form">
+						<form action="./index2.html" class="validateForm3">
+							<label>Campo Numerico:</label>
+							<input type="text" value="numerico" valid="{type:'number',message:'campo numerico'}"/>
+							<br />
+							<br />
+							<label>Campo email:</label>
+							<input type="text" value="2" valid="{type:'email',message:'email errata'}" />
+							<br />
+							<br />
+							<label>Campo nome:</label>
+							<input type="text" value="email" valid="{type:'alfa',message:'email nome'}"/>
+							<br />
+							<br />
+							<label>Campo descrizione:</label>
+							<input type="text" value="alfa" valid="{type:'alfa-num',message:'campo descrizione'}"/>
+							<br />
+							<br />
+							<label>Campo data:</label>
+							<input type="text" value="5" valid="{type:'data',message:'campo data'}"/>
+							<br />
+							<br />
+							<label>Campo cap:</label>
+							<input type="text" value="2 bis" valid="{type:'cap',message:'campo cap'}"/>
+							<br />
+							<br />
+							<label>Campo password:</label>
+							<input type="password" value="3 bis" valid="{type:'password',message:'campo password'}"/>
+							<br />
+							<br />
+							<br>
+							<input type="submit" value="send" />
+						</form>
+					</div>
+				</div>
+				<div id="pro09" style="width: 48%;float: right;background:#ddd">
+					<div class="code">
+						<span style="width: 350px;height: 200px;padding: 10px;">
+							<br>
+							&lt;script&gt;
+							<br />
+							validation.form('validateForm2',{label:'bottom'} });
+							<br />
+							&lt;/script&gt;
+							<br>
+							<br>
+							&lt; form action="./index2.html" class="validateForm2">
+							<br>
+							&lt;input type="text" value="numerico" valid="{type:'number',message:'campo errato numerico'}"/&gt;
+							<br />
+							&lt;input type="text" value="numerico" valid="{type:'email',message:'campo errato ecc.ecc'}"/&gt;
+							<br />
+							&lt;input type="text" value="numerico" valid="{type:'alfa',message:'campo errato ecc.ecc'}"/&gt;
+							<br />
+							&lt;input type="text" value="numerico" valid="{type:'password',message:'campo errato password'}"/&gt;
+							<br />
+							&lt;input type="submit" value="send" />
+							<br />
+							&lt; /form> </span>
+
+					</div>
+				</div>
+
+			</div>
+			<div class="clear">
+				Esempio: Label: right
+			</div>
+			<!-- -->
+			<!-- -->
+			<div id="pro10" style="width: 100%;float: left;background:#999">
+				<div style="width: 50%;float: left">
+					<div class="form">
+						<form action="./index2.html" class="validateForm4">
+							<label>Campo Numerico:</label>
+							<input type="text" value="numerico" valid="{type:'number',message:'campo numerico'}"/>
+							<br />
+							<br />
+							<label>Campo email:</label>
+							<input type="text" value="2" valid="{type:'email',message:'email errata'}" />
+							<br />
+							<br />
+							<label>Campo nome:</label>
+							<input type="text" value="email" valid="{type:'alfa',message:'email nome'}"/>
+							<br />
+							<br />
+							<label>Campo descrizione:</label>
+							<input type="text" value="alfa" valid="{type:'alfa-num',message:'campo descrizione'}"/>
+							<br />
+							<br />
+							<label>Campo data:</label>
+							<input type="text" value="5" valid="{type:'data',message:'campo data'}"/>
+							<br />
+							<br />
+							<label>Campo cap:</label>
+							<input type="text" value="2 bis" valid="{type:'cap',message:'campo cap'}"/>
+							<br />
+							<br />
+							<label>Campo password:</label>
+							<input type="password" value="3 bis" valid="{type:'password',message:'campo password'}"/>
+							<br />
+							<br />
+							<br>
+							<input type="submit" value="send" />
+						</form>
+					</div>
+				</div>
+				<div id="pro11" style="width: 48%;float: right;background:#ddd">
+					<div class="code">
+						<span style="width: 350px;height: 200px;padding: 10px;">
+							<br>
+							&lt;script&gt;
+							<br />
+							validation.form('validateForm2',{label:'right'} });
+							<br />
+							&lt;/script&gt;
+							<br>
+							<br>
+							&lt; form action="./index2.html" class="validateForm2">
+							<br>
+							&lt;input type="text" value="numerico" valid="{type:'number',message:'campo errato numerico'}"/&gt;
+							<br />
+							&lt;input type="text" value="numerico" valid="{type:'email',message:'campo errato ecc.ecc'}"/&gt;
+							<br />
+							&lt;input type="text" value="numerico" valid="{type:'alfa',message:'campo errato ecc.ecc'}"/&gt;
+							<br />
+							&lt;input type="text" value="numerico" valid="{type:'password',message:'campo errato password'}"/&gt;
+							<br />
+							&lt;input type="submit" value="send" />
+							<br />
+							&lt; /form> </span>
+
+					</div>
+				</div>
+
+			</div>
+			<div class="clear">
+				Esempio: Label: left
+			</div>
+			<!-- -->
+			<!-- -->
+			<div id="pro12" style="width: 100%;float: left;background:#999">
+				<div style="width: 50%;float: left">
+					<div class="form">
+						<form action="./index2.html" class="validateForm5">
+							<label>Campo Numerico:</label>
+							<input type="text" value="numerico" valid="{type:'number',message:'campo numerico'}"/>
+							<br />
+							<br />
+							<label>Campo email:</label>
+							<input type="text" value="2" valid="{type:'email',message:'email errata'}" />
+							<br />
+							<br />
+							<label>Campo nome:</label>
+							<input type="text" value="email" valid="{type:'alfa',message:'email nome'}"/>
+							<br />
+							<br />
+							<label>Campo descrizione:</label>
+							<input type="text" value="alfa" valid="{type:'alfa-num',message:'campo descrizione'}"/>
+							<br />
+							<br />
+							<label>Campo data:</label>
+							<input type="text" value="5" valid="{type:'data',message:'campo data'}"/>
+							<br />
+							<br />
+							<label>Campo cap:</label>
+							<input type="text" value="2 bis" valid="{type:'cap',message:'campo cap'}"/>
+							<br />
+							<br />
+							<label>Campo password:</label>
+							<input type="password" value="3 bis" valid="{type:'password',message:'campo password'}"/>
+							<br />
+							<br />
+							<br>
+							<input type="submit" value="send" />
+						</form>
+					</div>
+				</div>
+				<div id="pro13" style="width: 48%;float: right;background:#ddd">
+					<div class="code">
+						<span style="width: 350px;height: 200px;padding: 10px;">
+							<br>
+							&lt;script&gt;
+							<br />
+							validation.form('validateForm2',{label:'left'} });
+							<br />
+							&lt;/script&gt;
+							<br>
+							<br>
+							&lt; form action="./index2.html" class="validateForm2">
+							<br>
+							&lt;input type="text" value="numerico" valid="{type:'number',message:'campo errato numerico'}"/&gt;
+							<br />
+							&lt;input type="text" value="numerico" valid="{type:'email',message:'campo errato ecc.ecc'}"/&gt;
+							<br />
+							&lt;input type="text" value="numerico" valid="{type:'alfa',message:'campo errato ecc.ecc'}"/&gt;
+							<br />
+							&lt;input type="text" value="numerico" valid="{type:'password',message:'campo errato password'}"/&gt;
+							<br />
+							&lt;input type="submit" value="send" />
+							<br />
+							&lt; /form> </span>
+
+					</div>
+				</div>
+
+			</div>
+			<div class="clear">
+				Esempio senza label,  con callBlack
+			</div>
+			<!-- -->
+
+			<!-- -->
+			<div id="pro14" style="width: 100%;float: left;background:#999">
+				<div style="width: 50%;float: left">
+					<div class="form">
+						<form action="./index2.html" class="validateForm6">
+							<label>Campo Numerico:</label>
+							<input type="text" value="numerico" valid="{type:'number',message:'campo numerico'}"/>
+							<br />
+							<br />
+							<label>Campo email:</label>
+							<input type="text" value="2" valid="{type:'email',message:'email errata'}" />
+							<br />
+							<br />
+							<label>Campo nome:</label>
+							<input type="text" value="email" valid="{type:'alfa',message:'email nome'}"/>
+							<br />
+							<br />
+							<label>Campo descrizione:</label>
+							<input type="text" value="alfa" valid="{type:'alfa-num',message:'campo descrizione'}"/>
+							<br />
+							<br />
+							<label>Campo data:</label>
+							<input type="text" value="5" valid="{type:'data',message:'campo data'}"/>
+							<br />
+							<br />
+							<label>Campo cap:</label>
+							<input type="text" value="2 bis" valid="{type:'cap',message:'campo cap'}"/>
+							<br />
+							<br />
+							<label>Campo password:</label>
+							<input type="password" value="3 bis" valid="{type:'password',message:'campo password'}"/>
+							<br />
+							<br />
+							<br>
+							<input type="submit" value="send" />
+						</form>
+					</div>
+				</div>
+				<div id="pro15" style="width: 48%;float: right;background:#ddd">
+					<div class="code">
+						<span style="width: 350px;height: 200px;padding: 10px;">
+							<br>
+							&lt;script>
+							<br />
+							validation.form('validateForm6',{callBack:function(a){alert(a[0].message)}});
+							<br />
+							&lt;/script>
+							<br>
+							<br>
+							&lt; form action="./index2.html" class="validateForm6">
+							<br>
+							&lt;input type="text" value="numerico" valid="{type:'number',message:'campo errato numerico'}"/&gt;
+							<br />
+							&lt;input type="text" value="numerico" valid="{type:'email',message:'campo errato ecc.ecc'}"/&gt;
+							<br />
+							&lt;input type="text" value="numerico" valid="{type:'alfa',message:'campo errato ecc.ecc'}"/&gt;
+							<br />
+							&lt;input type="text" value="numerico" valid="{type:'password',message:'campo errato password'}"/&gt;
+							<br />
+							&lt;input type="submit" value="send" />
+							<br />
+							&lt; /form> </span>
+
+					</div>
+				</div>
+
+			</div>
+			<div class="clear">
+				EVENT > Validare un Form su Eventi diversi da Submit
+			</div>
+			<!-- -->
+
+			<!-- -->
+			<div id="pro16" style="width: 100%;float: left;background:#999">
+				<div style="width: 50%;float: left">
+					<div class="form">
+						<form action="./index2.html" class="validateForm73">
+							<label>Campo Numerico:</label>
+							<input type="text" value="numerico" valid="{type:'number',message:'campo numerico'}"/>
+							<br />
+							<br />
+							<label>Campo email:</label>
+							<input type="text" value="2" valid="{type:'email',message:'email errata'}" />
+							<br />
+							<br />
+							<label>Campo nome:</label>
+							<input type="text" value="email" valid="{type:'alfa',message:'email nome'}"/>
+							<br />
+							<br />
+							<label>Campo descrizione:</label>
+							<input type="text" value="alfa" valid="{type:'alfa-num',message:'campo descrizione'}"/>
+							<br />
+							<br />
+							<label>Campo data:</label>
+							<input type="text" value="5" valid="{type:'data',message:'campo data'}"/>
+							<br />
+							<br />
+							<label>Campo cap:</label>
+							<input type="text" value="2 bis" valid="{type:'cap',message:'campo cap'}"/>
+							<br />
+							<br />
+							<label>Campo password:</label>
+							<input type="password" value="3 bis" valid="{type:'password',message:'campo password'}"/>
+							<br />
+							<br />
+							<br>
+							<input type="button" value=" Valida form e abilita submit su eventi diversi, come ( blur ) " class="btnValida"  />
+						</form>
+					</div>
+				</div>
+				<div id="pro17" style="width: 48%;float: right;background:#ddd">
+					<div class="code">
+						<span style="width: 350px;height: 200px;padding: 10px;">
+							<br>
+							&lt;script&gt;
+							<br />
+							validation.form('btnValida',{event:'blur',label:'top',callBack:function(a,f){if(a.length &lt; 1)f.submit()}});
+							<br />
+							&lt;/script&gt;
+							<br>
+							<br>
+							&lt; form action="./index2.html" class="validateForm6">
+							<br>
+							&lt;input type="text" value="numerico" valid="{type:'number',message:'campo errato numerico'}"/&gt;
+							<br />
+							&lt;input type="text" value="numerico" valid="{type:'email',message:'campo errato ecc.ecc'}"/&gt;
+							<br />
+							&lt;input type="text" value="numerico" valid="{type:'alfa',message:'campo errato ecc.ecc'}"/&gt;
+							<br />
+							&lt;input type="text" value="numerico" valid="{type:'password',message:'campo errato password'}"/&gt;
+							<br />
+							&lt;input type="button" value="Valida e abilita submit sul blur" class="btnValida" />
+							<br />
+							&lt; /form> </span>
+
+					</div>
+				</div>
+			</div>
+			<div class="clear">
+				EVENT > abbinare ulteriori eventi ad elementi
+			</div>
+			<!-- -->
+
+			<!-- -->
+			<div id="pro18" style="width: 100%;float: left;background:#999">
+				<div style="width: 50%;float: left">
+					<div class="form">
+						<form action="./index2.html" class="validateForm7">
+							<label>Campo Numerico:</label>
+							<input type="text" class="myEvent" value="numerico" valid="{type:'number',message:'campo numerico'}"/>
+							<br />
+							<br />
+							<label>Campo email:</label>
+							<input type="text" class="myEvent" value="2" valid="{type:'email',message:'email errata'}" />
+							<br />
+							<br />
+							<label>Campo nome:</label>
+							<input type="text" class="myEvent" value="email" valid="{type:'alfa',message:'email nome'}"/>
+							<br />
+							<br />
+							<label>Campo descrizione:</label>
+							<input type="text" class="myEvent" value="alfa" valid="{type:'alfa-num',message:'campo descrizione'}"/>
+							<br />
+							<br />
+							<label>Campo data:</label>
+							<input type="text" class="myEvent" value="5" valid="{type:'data',message:'campo data'}"/>
+							<br />
+							<br />
+							<label>Campo cap:</label>
+							<input type="text" class="myEvent" value="2 bis" valid="{type:'cap',message:'campo cap'}"/>
+							<br />
+							<br />
+							<label>Campo password:</label>
+							<input type="password" class="myEvent" value="3 bis" valid="{type:'password',message:'campo password'}"/>
+							<br />
+							<br />
+							<br>
+							<input type="submit" value="send" />
+						</form>
+					</div>
+				</div>
+				<div id="pro19" style="width: 48%;float: right;background:#ddd">
+					<div class="code">
+						<span style="width: 350px;height: 200px;padding: 10px;">
+							<br>
+							&lt;script&gt;
+							<br />
+							validation.form('validateForm7',{callBack:function(a){alert(a[0].message)}});
+							<br />
+							validation.captured({nodeClass:"myEvent",attach:[{fn:template.base.evidenzia,event:"focus blur"}]});
+							<br/>
+							&lt;/script&gt;
+							<br>
+							<br>
+							&lt; form action="./index2.html" class="validateForm7">
+							<br> 
+							&lt;input type="text" value="" class="myEvent" valid="{type:'number',message:'campo numerico errato'}"/&gt;
+							<br />
+							&lt;input type="text" value="" class="myEvent" valid="{type:'email',message:'campo email errato'}"/&gt;
+							<br />
+							&lt;input type="text" value="" class="myEvent" valid="{type:'alfa',message:'campo testo errato'}"/&gt;
+							<br />
+							&lt;input type="text" value="" class="myEvent" valid="{type:'password',message:'campo password errato'}"/&gt;
+							<br />	
+							&lt;input type="submit" value="send" />
+							<br />
+							&lt; /form> </span>
+
+					</div>
+				</div>
+
+			</div>
+			<div  class="clear">
+				Esempio: Abbinare Eventi utilizzando l'attributo data{}
+			</div>
+			<!-- -->
+
+			<!-- -->
+			<div id="pro20" style="width: 100%;float: left;background:#999">
+				<div style="width: 50%;float: left">
+					<div class="form">
+
+						<label>Abbinare Eventi:</label>
+						<input type="text"  class="event" data="{template:'base',name:'evidenzia',event:'focus blur'}"/>
+						<br />
+						<br />
+						<label>Abbinare Eventi:</label>
+						<input type="text"  class="event" data="{template:'base',name:'evidenzia',event:'focus blur'}" />
+						<br />
+						<br />
+						<label>Abbinare Eventi:</label>
+						<input type="text"  class="event" data="{template:'base',name:'evidenzia',event:'focus blur'}"/>
+						<br />
+						<br />
+						<label>Abbinare Eventi:</label>
+						<input type="text"  class="event" data="{template:'base',name:'evidenzia',event:'focus blur'}"/>
+						<br />
+						<br />
+						<label>Abbinare Eventi:</label>
+						<input type="text"  class="event" data="{template:'base',name:'evidenzia',event:'focus blur'}"/>
+						<br />
+						<br />
+						<label>Abbinare Eventi:</label>
+						<input type="text"  class="event" data="{template:'base',name:'evidenzia',event:'focus blur'}"/>
+						<br />
+						<br />
+						<label>Abbinare Eventi:</label>
+						<input type="password"  class="event" data="{template:'base',name:'evidenzia',event:'focus blur'}"/>
+						<br />
+						<br />
+						<br>
+
+					</div>
+				</div>
+				<div id="pro21" style="width: 48%;float: right;background:#ddd">
+					<div class="code">
+						<span style="width: 350px;height: 200px;padding: 10px;">
+							<br>
+							&lt;script&gt;
+							<br />
+							validation.captured('event');
+							<br />
+							&lt;/script&gt;
+							<br>
+							<br>
+							<br>
+							&lt;input type="text"  class="event"  data="{template:'base',name:'evidenzia',event:'focus blur'}"/&gt;
+							<br />
+							&lt;input type="text"  class="event"  data="{template:'base',name:'evidenzia',event:'focus blur'}"/&gt;
+							<br />
+							&lt;input type="text"  class="event"  data="{template:'base',name:'evidenzia',event:'focus blur'}"/&gt;
+							<br />
+							&lt;input type="text"  class="event"  data="{template:'base',name:'evidenzia',event:'focus blur'}"/&gt;
+							<br />
+							<br />
+						</span>
+
+					</div>
+				</div>
+
+			</div>
+			<div class="clear">
+				Esempio: Abbinare Eventi utilizzando l'oggetto Attach:[{}]
+			</div>
+			<!-- -->
+
+			<!-- -->
+			<div id="pro22" style="width: 100%;float: left;background:#999">
+				<div style="width: 50%;float: left">
+					<div class="form">
+
+						<label>Abbinare Eventi: &gt; attach: </label>
+						<input type="text"  class="event2"/>
+						<br />
+						<br />
+						<label>Abbinare Eventi: &gt; attach:</label>
+						<input type="text"  class="event2"/>
+						<br />
+						<br />
+						<label>Abbinare Eventi: &gt; attach:</label>
+						<input type="text"  class="event2"/>
+						<br />
+						<br />
+						<label>Abbinare Eventi: &gt; attach:</label>
+						<input type="text"  class="event2"/>
+						<br />
+						<br />
+						<label>Abbinare Eventi: &gt; attach:</label>
+						<input type="text"  class="event2"/>
+						<br />
+						<br />
+						<label>Abbinare Eventi: &gt; attach:</label>
+						<input type="text"  class="event2" />
+						<br />
+						<br />
+						<label>Abbinare Eventi: &gt; attach:</label>
+						<input type="password"  class="event2" />
+						<br />
+						<br />
+						<br>
+
+					</div>
+				</div>
+				<div id="pro23" style="width: 48%;float: right;background:#ddd">
+					<div class="code">
+						<span style="width: 350px;height: 200px;padding: 10px;">
+							<br>
+							&lt;script&gt;
+							<br />
+							validation.captured({nodeClass:"event2",attach:[{fn:template.base.evidenzia,event:"focus blur"}]});
+							<br />
+							&lt;/script&gt;
+							<br>
+							<br>
+							<br>
+							&lt;input type="text"  class="event2"  /&gt;
+							<br />
+							&lt;input type="text"  class="event2"  /&gt;
+							<br />
+							&lt;input type="text"  class="event2"  /&gt;
+							<br />
+							&lt;input type="text"  class="event2"  /&gt;
+							<br />
+							<br />
+						</span>
+
+					</div>
+				</div>
+
+			</div>
+			<div class="clear"></div>
+			<!-- -->
+
+		</div>
+
+		<div id="htmlBody"></div>
+	</body>
+</html>
