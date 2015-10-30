@@ -31,7 +31,7 @@ template.validateForm = {
         if (lts_error.length > 0) {  
            
            if(validation.isFunction(o_['callBack'])){
-              
+                 template.validateForm.cancelPropagation(e);
                  positionMsg = o_['label'] || 'auto';
                 template.validateForm.responsMessage(positionMsg, lts_error,o_,f);
             
@@ -39,15 +39,11 @@ template.validateForm = {
                 return false;
             } 
              else {
-                
+                  template.validateForm.cancelPropagation(e);
                  positionMsg = o_['label'] || 'auto';
                 template.validateForm.responsMessage(positionMsg, lts_error,o_,f);
                  return false;
            }
-           
-            
-             template.validateForm.cancelPropagation(e);
-             return false;
             
         }
             if(validation.isFunction(o_['callBack'])){
