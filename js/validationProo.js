@@ -57,7 +57,7 @@ validation.bind = function(e, t) {
 
         return nativeBind.apply(e, slice.call(arguments, 1));
 
-    var n = slice.call(arguments, 2);
+    var n = slice.call(arguments, 1);
 
     return function() {
         return e.apply(t, n.concat(slice.call(arguments)))
