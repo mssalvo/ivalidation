@@ -300,6 +300,7 @@ validation.attachLabel = {
     background : '#FF6666',
     backgroundDef : '#FFFFFF',
     event : 'submit',
+    formName : false,
     callBack : null
 }
 
