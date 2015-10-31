@@ -15,10 +15,11 @@ template.validateForm = {
         var tg = e.target || e.srcElement;
         var f=tg;
       
-        if(f.nodeName!='FORM'){
+        if(f.nodeName!='FORM' && !o_['formName']){
             f=tg.form;
-           
-        }
+        }else if(o_['formName']){
+		f= document.forms[o_['formName']];
+		}
         
         var s = true;
         for (var i = 0; i < f.elements.length; i++) {
@@ -35,8 +36,7 @@ template.validateForm = {
                 template.validateForm.responsMessage(positionMsg, lts_error,o_,f);
                  template.validateForm.useOnCallBack(lts_error,o_,f);
                 return false;
-            } 
-             else {
+            } else {
                  positionMsg = o_['label'] || 'auto';
                 template.validateForm.responsMessage(positionMsg, lts_error,o_,f);
                  return false;
@@ -46,6 +46,9 @@ template.validateForm = {
             if(validation.isFunction(o_['callBack'])){
               template.validateForm.useOnCallBack(lts_error,o_,f);  
             }
+            if(o_['formName']){
+			f.submit()
+		   }
 
         return true;
     },
